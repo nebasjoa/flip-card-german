@@ -11,6 +11,7 @@ body {
 }
 
 .button {
+  margin: 10px;
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -18,8 +19,9 @@ body {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  margin: 40px;
   cursor: pointer;
+  z-index: 1;
+  display:inline-block;
 }
 
 .button-holder {
@@ -28,16 +30,44 @@ body {
     justify-content: center;
 }
 
+.all-buttons {
+  margin-top: 340px;
+  display: flex;
+  z-index: 1;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-word-button {
+  display:inline-block;
+  background-color: #ff0000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+  margin: 10px;
+}
+
 h1 {
     font-size: 50px;
     padding-top: 70px;
 }
 
 .flip-card {
-  background-color: transparent;
+  background-color: yellowgreen;;
   width: 500px;
   height: 300px;
   perspective: 1000px;
+  position: absolute;
 }
 
 .flip-card-inner {
@@ -72,6 +102,16 @@ h1 {
   color: white;
   transform: rotateY(180deg);
 }
+
+#form-container {
+  margin-top: 200px;
+  padding-top: 200px;
+  display: inline;
+  visibility: hidden;
+  background-color: rgb(235, 23, 206);
+  z-index: 10;
+}
+
 </style>
 </head>
 
@@ -1140,11 +1180,15 @@ h1 {
         document.getElementById("front").innerHTML = german[r];
         document.getElementById("back").innerHTML = english[r];
  } 
+
+    function showform() {
+      document.getElementById("form-container").style.visibility = "visible";
+    }
 </script>
 <body>
 
-<h1>Card Flip with Text</h1>
-<h3>Hover over the image below:</h3>
+<h1>Card Flip with Translation</h1>
+<h3>Click the image below to display english translation:</h3>
 
 <div class="flip-card">
   <div class="flip-card-inner">
@@ -1156,9 +1200,24 @@ h1 {
     </div>
   </div>
 </div>
+<div class="buttons-wrapper">
+<div class="all-buttons">
 <div class="button-holder">
     <input type="button" class="button" value="Weiter" onclick="myfunction()" />
 </div>
-
+<div class="button-holder">
+  <input type="button" class="new-word-button" value="Neue Wort" onclick="showform()" />
+</div>
+</div>
+</div>
+<div id="form-container">
+<form>
+  <label for="gword">German word:</label><br>
+  <input type="text" id="gword" name="gword" value="Enter German word"><br>
+  <label for="eword">English word:</label><br>
+  <input type="text" id="eword" name="eword" value="Enter English word"><br><br>
+  <input type="submit" value="Save word">
+</form> 
+</div>
 </body>
 </html>
